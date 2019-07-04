@@ -1,0 +1,121 @@
+/*
+Extra small devices (portrait phones, less than 576px)
+No media query for `xs` since this is the default in Bootstrap
+*/
+
+
+
+/*Small devices (landscape phones, 425px)*/
+@media screen and (max-width: 425px) {
+/*  
+	navbar items display : block;
+*/	
+#brand-icon{
+	display: block;
+}
+
+#search-icon{
+	display: block;
+}
+
+#menu-icon{
+	display: block;
+}
+
+/*  
+	navbar items display : none;
+*/	
+
+#search-bar{
+	display: none;
+}
+
+#remove-icon{
+	display: none;
+}
+
+}
+
+/* Medium devices (tablets, 768px)*/
+@media screen and (max-width: 768px) {
+
+
+#remove-icon{
+	display: none;
+}
+
+
+.sidenav {
+	margin-left:-30px;
+	margin-top: 50px;
+	height: 100%;
+	width: 0%;
+	position: fixed;
+	z-index: 1;
+  	left: 0;
+  	top: 0;
+	background-color: #fff;
+	overflow-x: hidden;
+	transition: 0.3s;
+}
+
+
+.menu-icon{
+	display: block;
+}
+
+div.main-content{
+	margin-left: 0px;
+}
+
+div.card h6{
+	font-size: 14px;
+}
+
+div.card p{
+	font-size:12px; 
+}
+
+
+}
+
+@media screen and (min-width: 768px) {
+/*
+div.main-content{
+	margin-left: 33.33%;
+}
+
+.sidenav{
+	padding-bottom: 50px;
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	
+}
+*/
+
+#remove-icon{
+	display: none;
+}
+
+
+}
+
+/* Large devices (desktops, 992px)*/
+@media screen and (max-width: 1024px) {
+
+#remove-icon{
+	display: none;
+}
+
+.btn-css{
+	display: block;
+}
+
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media screen and (max-width: 1200px) {
+
+
+}

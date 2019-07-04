@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load custom_filters %}
+
+{% block main_content %}
+
+	{% for d in data %}
+		<div class="card mb-2 mt-2 shadow-lg" style="background-color: #fff;">
+		    <div class="card-body p-2">
+		    	{% if d.source_name == "Youtube.com" %}
+		    	<div class="col-12 p-0 m-0 link-css">
+		    		<div class="col-12 p-0 m-0">
+		    			<iframe id="ytplayer" type="text/html" width="100%" height="100%"
+	  						src="https://www.youtube.com/embed/{{d.url|videoid}}?" frameborder="0">
+  						</iframe>
+		    		</div>
+		    		<h6 class="card-title">
+				      	<a href="{{d.url}}" class="link-css" target="-blank" 
+				      	style="color: black;" title="Article source link">
+				      		{{d.title|rmsource|htmlconvert}}
+				      	</a>
+			      	</h6>
+		    	</div>
+
+		    	{% elif d.urlToImage == "null" %}
+		    	<div class="col-12 p-0 m-0 link-css">
+		    		<h6 class="card-title">
+				      	<a href="{{d.url}}" class="link-css" target="-blank" 
+				      	style="color: black;" title="Article source link">
+				      		{{d.title|rmsource|htmlconvert}}
+				      	</a>
+			      	</h6>
+		    	</div>
+		    	{% else %}
+		    	<div class="row">
+		    		<div class="col-8 pr-0 mr-0 link-css">
+		    			<h6 class="card-title">
+				      		<a href="{{d.url}}" class="link-css" target="-blank" 
+				      		style="color: black;" title="Article source link">
+				      		{{d.title|rmsource|htmlconvert}}
+				      		</a>
+			      		</h6>
+			      	</div>
+			    	<div class="col-4 pl-0 ml-0">
+			    		<a title="Click image to see full view" 
+			    			onclick="ImgModel('{{d.urlToImage}}')" 
+			    			data-toggle="modal" data-target="#imgModel">
+			    			<img class="rounded img-fluid" src="{{d.urlToImage}}" 
+			    			onerror="imgError(this, '{% static 'Project_news/images/alt_np_icon.png' %}');">
+			    		</a>
+			    	</div>	
+		    	</div>
+		    	{% endif %}
+
+		      	<p style="font-size:14px;">{{d.publishedAt|nicedate|timesince}} ago</p>
+
+		      	{% if d.source_name != "Youtube.com" %}
+			      	
+			      	{% if d.description != "null" %}
+			      		<p><b>Description:</b> {{d.description|htmlconvert}}...
+			      			<a href="{{d.url}}" style=" color: blue;" target="-blank" 
+			      			title="Article source link">show article</a>
+			      		</p>
+			      	{% elif d.content != "null" and d.content|startswith %}
+			      		<p><b>Content:</b> {{d.content|rmdigit|htmlconvert}}...
+			      			<a href="{{d.url}}"style="color: blue;" target="-blank" 
+			      			title="Article source link">show article</a>
+			      		</p>
+			      	{% endif %}
+    			
+					<hr>
+				  	<div class="row score-link-eclipse ml-2 mr-2">
+				  		<a style="float: left;" title="Data fatch from Google's 'NewsApi.org'">
+				  			<span class="badge badge-primary" id="score_id">
+				  			Data Availability: {{d.initial_score|percetage}}%</span></a>
+				  		<a style="margin-left: 33.33%; display: none;"
+				  		 title="Check who else of talked about it">
+				  			<i class="fa fa-external-link"></i>
+				  		</a>
+				  		<a style="float: right;" class="btn btn-default pt-0 pb-0" role="button" 
+				  		onclick="modelOpen('{{d.source_name}}', '{{d.initial_score|percetage}}', 
+				  			'{{d.auther}}', 
+				  		'{{d.publishedAt|nicedate|date:"d M, Y"}}' )"
+				  		 data-toggle="modal" data-target="#myModal" title="More info">
+				  			<i class="fa fa-ellipsis-h"></i>
+				  		</a>
+				  	</div>
+				  	
+			  	{% endif %}
+
+		    </div>
+		</div>
+	{% endfor %}
+
+	{% if data.count == 0 %}
+		<div class="card mt-5 shadow-lg">
+		    <div class="card-body">
+		      <h4 class="card-title">Not Found!</h4>
+		      <p class="card-text">Search result for "{{search_query}}" not found.</p>
+		    </div>
+		</div>
+	{% endif %}
+
+					<!-- The Modal  source auther date -->
+					  <div class="modal fade" id="myModal">
+					    <div class="modal-dialog modal-dialog-centered modal-sm">
+					      <div class="modal-content">
+					      
+					        <!-- Modal Header -->
+					        <div class="modal-header">
+					          	<h4 class="modal-title" style="font-weight: bold;" id="modalHeader">
+					          		
+					          	</h4>
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        </div>
+					        
+					        <!-- Modal body -->
+					        <div class="modal-body">
+						        <p id="newsSource"></p>
+								<p id="author"></p>
+								<p id="pubDate"></p>
+					        </div>      
+					      </div>
+					    </div>
+					  </div>
+					  <!-- model close -->
+
+
+					  
+
+{% endblock %}

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>HourAgo {% block page_title %}{% endblock %}</title>
+
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Montserrat|Rubik&display=swap" 
+    rel="stylesheet">
+
+    <!-- icons -->
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" 
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	{% block head %}
+
+	{% endblock %}
+
+	<!-- custom css and js file -->
+	<link rel="stylesheet" type="text/css" href="{% static 'Project_news/css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Project_news/css/responsive.css' %}">
+
+
+	<script type="text/javascript" src="{% static 'Project_news/js/main.js' %}"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-light shadow-lg navbar-css">
+		<ul class="nav">
+			<!-- brand name> -->
+			<li class="nav-item" id="brand-icon">
+				<a class="navbar-brand mr-0 brand-link" href="{% url 'newsapp:general' %}">
+					HourAgo
+				</a>
+			</li>
+		</ul>
+		<ul class="nav justify-content-end">
+
+			<!-- search bar -->
+			<li class="nav-item mt-1" id="search-bar">
+				<form class="example" action="{% url 'newsapp:search_result' %}" 
+				name="search-form" method="get">
+				<label for="searchIn"></label>
+  					<input type="search" placeholder="Search.." name="q" value="{{search_query}}"
+  					 onkeyup="searchElement(this)" id="searchIn">
+  					<button type="submit" role="button" id="srcBtn" 
+  					aria-label="Search" disabled><i class="fa fa-search"></i></button>
+				</form>
+			</li>
+			
+			<!-- romove icon -->
+			<li class="nav-item ml-3" id ="remove-icon" style="font-size:26px;"
+			onclick="removeIcon()">
+				<i class="fa fa-remove"></i>
+			</li>
+
+			<!-- search icon -->
+			<li class="nav-item ml-3" id="search-icon" style="font-size:24px;color:#5ca1ea;"
+			onclick="searchIcon()">
+				<i class="fa fa-search"></i>
+			</li>
+			
+		</ul>
+	</nav>
+
+	<div class="container p-3">
+		<!--- news fact story -->
+		<span id="about"></span>
+		<h1 style="text-align: center; font-family: 'Rubik', sans-serif; font-size: 30px;">
+			HourAgo Story
+		</h1>
+		<hr style="background-color: #5ca1ea;">
+		<div style="font-family: 'Montserrat', sans-serif; font-size: 16px;">
+			<p>
+				How often you have cared about author or source of the news article? Well... I read a ton of news articles and posts online but never found a source which have informed me about the author of news article before reading the article. You have to deep dive into source website without knowing. Sometime they don't even bother to mention author name inside news article and it is agonizing.
+			</p>
+			<p>
+				You can find news article more credible by knowing the source or author of news article. <b>HourAgo</b> aims to provide information such as <b>news source, author, publication date</b> and <b>description</b> about news article before you read the article.
+			</p>
+			<p>
+				HourAgo collect information from <b>Google's <a href="https://newsapi.org/" 
+				target="-blank">NewsApi.org</a></b> website. HourAgo also calculate data(in %) of news articles based upon availability of data collected from NewsApi.org
+			</p>
+		</div>
+
+
+		<!------------ why hourago?---->
+		<span id="Why_HourAgo?"></span>
+		<h1 style="text-align: center; font-family: 'Rubik', sans-serif; font-size: 30px;">
+			Why HourAgo?
+		</h1>
+		<hr style="background-color: #5ca1ea;">
+
+		<div style="font-family: 'Montserrat', sans-serif; font-size: 16px;">
+			<p>
+				<b>HourAgo</b> is trying to prevent reader from <a href="https://www.google.com/search?q=fake news" target="-blank">fake news</a> and a great way to do it by providing more data about news article itself. <b>News article is more credible when you know more about it</b>.
+			</p>
+			<p>
+				HourAgo uses simple data analysis tools to calculate the data of news articles. HourAgo's <b>Data Availability</b> element does not tell you the qualitiy of news article. <b>Data Availability</b> is a way to inform you about the availability of information provided by Google's NewsApi.
+			</p>
+			<p>
+				Future add on's:
+				<ul>
+					<li>
+						Identifying <a href="https://www.google.com/search?q=clickbait" 
+						target="-blank">clickbait articles</a> using Machine Learning and Advance Data Analysis.
+					</li>
+					<li>
+						Identifying which other news sources also talked about the same news article (Great way to identify <a href="https://www.google.com/search?q=fake news" 
+						target="-blank">fake news</a>).
+					</li>
+				</ul>
+			</p>
+		</div>
+
+		<!-- contacts -->
+		<span id="contacts"></span>
+		<h1 style="text-align: center; font-family: 'Rubik', sans-serif; font-size: 30px;">
+			Contacts
+		</h1>
+		<hr style="background-color: #5ca1ea;">
+		<div style="text-align: center;">
+			<p>For any feedback or copyright issue contact here</p>
+			<p><i class="fa fa-at"></i></p>
+		</div>
+
+	</div>
+
+
+	<!--- footer -->
+	<div class="container-fluid" style="background-color: #111;">
+		<hr style="background-color: black;">
+		<div class="container">
+			
+			<div class="row footer-div">
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<ul>
+						<li>
+							<a href="{% url 'newsapp:general' %}">Top Headlines</a>
+						</li>
+						<li>
+							<a href="{% url 'newsapp:business' %}">Business</a>
+						</li>
+						<li>
+							<a href="{% url 'newsapp:entertainment' %}">Entertainment</a>
+						</li>
+						<li>
+							<a href="{% url 'newsapp:health' %}">Health</a>
+						</li>
+						<li>
+							<a href="{% url 'newsapp:science' %}">Science</a>
+						</li>
+						<li>
+							<a href="{% url 'newsapp:sports' %}">Sports</a>
+						</li>
+						<li>
+							<a href="{% url 'newsapp:technology' %}">Technology</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<ul>
+						<li>
+							<a href="{% url 'newsapp:news_source' %}">News Source</a>
+						</li>
+						<li>
+							<a href="{% url 'newsapp:yt_news' %}">YouTube News</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<ul>
+						<li>
+							<a href="#about">About</a>
+						</li>
+						<li>
+							<a href="#Why_HourAgo?">Why HourAgo?</a>
+						</li>
+						<li>
+							<a href="#contacts">Contacts</a>
+						</li>
+						<li>
+							<a href="https://newsapi.org/" target="-blank">powered by NewsAPI.org</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+<script>
+	function searchIcon(){
+
+		document.getElementById("brand-icon").style.display = "none";
+		document.getElementById("search-icon").style.display = "none";
+
+		document.getElementById("search-bar").style.display = "block";
+		document.getElementById("remove-icon").style.display = "block";
+	}
+
+	function removeIcon(){
+
+		document.getElementById("search-bar").style.display = "none";
+		document.getElementById("remove-icon").style.display = "none";
+
+		document.getElementById("brand-icon").style.display = "block";
+		document.getElementById("search-icon").style.display = "block";
+	}
+</script>
+</body>
+</html>

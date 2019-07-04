@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load pwa %}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="content-type" content="text/html">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="Description" content="HourAgo is a news application which shows news data along with
+	news articles based upon information provided by Google's NewsApi.">
+	<meta name="keywords" content="hourago, hour ago, news, politics news, politics, fakenews, fake, india news, top headlines, business news, sports news, cricket news, tech news, games news, science, technology, youtube news, latest news, world news, today news, entertainment news, bollywood news, hollywood news, health news, latest, fake news, news media, news source, youtube news">
+
+	<title>HourAgo: Latest news, Sports, Tech, Health, Science...</title>
+
+	<!--  pwa  -->
+	{% progressive_web_app_meta %}
+
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Montserrat|Rubik&display=swap" 
+    rel="stylesheet">
+
+    <!-- icons -->
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" 
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	{% block head %}
+
+	{% endblock %}
+
+	<!-- custom css and js file -->
+	<link rel="stylesheet" type="text/css" href="{% static 'Project_news/css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Project_news/css/responsive.css' %}">
+
+
+	<script type="text/javascript" src="{% static 'Project_news/js/main.js' %}"></script>
+
+</head>
+<body>
+	<!--- Top header with search bar -->
+
+	<nav class="navbar navbar-light shadow-lg sticky-top navbar-css">
+		<ul class="nav">
+			<!-- brand name> -->
+			<li class="nav-item" id="brand-icon">
+				<a class="navbar-brand p-0 mr-0 brand-link" href="{% url 'newsapp:general' %}">
+					HourAgo
+				</a>
+			</li>
+		</ul>
+		<ul class="nav justify-content-end">
+
+			<!-- search bar -->
+			<li class="nav-item mt-1" id="search-bar">
+				<form class="example" action="{% url 'newsapp:search_result' %}" 
+				name="search-form" method="get">
+				<label for="searchIn"></label>
+  					<input type="search" placeholder="Search.." name="q" value="{{search_query}}"
+  					 onkeyup="searchElement(this)" id="searchIn">
+  					<button type="submit" role="button" id="srcBtn" 
+  					aria-label="Search" disabled><i class="fa fa-search"></i></button>
+				</form>
+			</li>
+			
+			<!-- romove icon -->
+			<li class="nav-item ml-3" id ="remove-icon" style="font-size:26px;"
+			onclick="removeIcon()">
+				<i class="fa fa-remove"></i>
+			</li>
+
+			<!-- search icon -->
+			<li class="nav-item ml-3" id="search-icon" style="font-size:24px;color:#5ca1ea;"
+			onclick="searchIcon()">
+				<i class="fa fa-search"></i>
+			</li>
+			
+			<!-- menu icon -->
+			<li class="nav-item mt-2 ml-3" id="menu-icon">
+				<i class="fa fa-navicon menu-icon" style="font-size:26px;color:#5ca1ea;"
+				 onclick="openNav()" id='nav-menu'>
+				</i>
+			</li>
+			
+		</ul>
+	</nav>
+
+	<!-- sidebar content left-side -->
+	
+	<div class="row m-1">
+		<!-- side nav  col-lg-3 col-md-3 -->
+		<div class="col-lg-3 col-md-4 sidenav" id="mySidenav">
+			 <ul class="nav flex-column">
+			    <li class="nav-item">
+			      <a class="nav-link active" href="{% url 'newsapp:general' %}" id="topheadline">
+			      	<i class="fa fa-newspaper-o"></i>&nbsp;&nbsp;
+			      Top Headlines</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{% url 'newsapp:business' %}" id="business">
+			      	<i class="fa fa-industry"></i>&nbsp;&nbsp;
+			      Business</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{% url 'newsapp:entertainment' %}" id="entertainment">
+			      	<i class="fa fa-film"></i>&nbsp;&nbsp;Entertainment</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{% url 'newsapp:health' %}" id="health">
+			      	<i class="fa fa-heartbeat"></i>&nbsp;&nbsp;
+			      Health</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{% url 'newsapp:science' %}" id="science">
+			      	<i class="fa fa-flask"></i>&nbsp;&nbsp;
+			      Science</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{% url 'newsapp:sports' %}" id="sports">
+			      	<i class="fa fa-soccer-ball-o"></i>&nbsp;&nbsp;
+			      Sports</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{% url 'newsapp:technology' %}" id="technology">
+			      	<i class="fa fa-microchip"></i>&nbsp;&nbsp;
+			      Technology</a>
+			    </li>
+			</ul>
+			<hr>
+			<ul class="nav flex-column">
+				<li class="nav-item">
+			      <a class="nav-link" href="{% url 'newsapp:news_source' %}" id="news_source">
+			      	<i class="fa fa-compass"></i>&nbsp;&nbsp;
+			      News Sources</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{% url 'newsapp:yt_news' %}" id="yt_news">
+			      	<i class="fa fa-youtube-play"></i>&nbsp;&nbsp;
+			      YouTube News</a>
+			    </li>
+			</ul>
+			<hr>
+			<ul class="nav flex-column pro-nav">
+			    <li class="nav-item">
+			      <a class="nav-link" href="{% url 'newsapp:about' %}"><i class="fa fa-info-circle">
+			      </i>&nbsp;&nbsp;About
+			  	  </a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{% url 'newsapp:about' %}#HourAgo?"><i class="fa fa-question-circle-o"></i>&nbsp;&nbsp;
+			      Why HourAgo?</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="{% url 'newsapp:about' %}#contacts"><i class="fa fa-phone"></i>&nbsp;&nbsp;
+			      Contacts</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="https://newsapi.org/" target="-blank"><i class="fa fa-at"></i>&nbsp;&nbsp;
+			      powered by NewsAPI.org</a>
+			    </li>
+			  </ul>
+			<hr>
+		</div>
+		
+		<!-- main content  -->
+		<div class="col-lg-6 col-md-8 col-sm-12 main-content">
+			<div class="container-fluid p-0 m-0">
+			{% block main_content %}
+
+			{% endblock %}
+			</div>
+		</div>
+
+		<!-- right side division  -->
+		<div class="col-lg-3">
+		</div>
+
+	</div>
+
+	<!-- The Modal image-->
+	  <div class="modal fade" id="imgModel" style="background-color: #111;">
+	    <div class="modal-dialog modal-dialog-centered modal-lg">
+	      <div class="modal-content">
+	        <!-- Modal body -->
+	        <div class="modal-body p-0 m-0">
+		        <img src="" class="rounded img-fluid" alt="Sorry! Can not load Image." 
+		        id="imgid">
+	        </div>      
+	      </div>
+	    </div>
+	  </div>
+	<!-- model close -->
+
+	<!-- footer -->
+
+<script type="text/javascript" src="{% static 'Project_news/js/sidenav.js' %}"></script>
+<script type="text/javascript" src="{% static 'Project_news/js/sub_main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+/*
+
+font-family: 'Montserrat', sans-serif;
+font-family: 'Rubik', sans-serif;
+
+*/
+
+h1, h2, h3, h4, h5, h6{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+}
+
+/* search bar */
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=search] {
+  	padding: 5px;
+  	font-size: 14px;
+  	border: 1px solid grey;
+  	float: left;
+  	width: 80%;
+}
+
+form.example button {
+  	float: left;
+  	width: 20%;
+  	padding: 5px;
+  	background: #2196F3;
+  	color: white;
+  	font-size: 14px;
+  	border: 1px solid grey;
+  	border-left: none;
+  	cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* search bar end */
+
+.navbar-css{
+	background-color: #fff;
+}
+
+.menu-icon{
+	display: none;
+}
+
+.sidenav{
+	padding-top: 15px;
+	padding-bottom: 50px;
+	width: 100%;
+	position: fixed;
+	height: 100%;
+	overflow: auto;
+}
+
+div.main-content{
+	margin-left: 25%; 
+}
+
+.sidenav a {
+	font-size: 14px;
+	padding-left: 40px;
+	display: block;
+	text-decoration: none;
+	color: #5ca1ea;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	text-decoration: none;
+}
+
+.sidenav a.active {
+  background-color: #5ca1ea;
+  color: white;
+}
+
+.sidenav a:hover:not(.active) {
+  background-color: #111;
+  color: white;
+}
+
+.pro-nav a{
+	font-size: 12px;
+}
+
+.icon-css{
+	display: block;
+}
+
+.score-link-eclipse{
+	display: block;
+	margin: 0px;
+}
+
+.score-link-eclipse a{
+	text-decoration: none;
+	color: black;
+}
+
+
+.link-css:hover{
+	text-decoration: underline;
+}
+
+div.card a{
+	cursor: pointer;
+}
+
+div.card h6{
+	font-size: 18px;
+	font-weight:bold;
+	font-family: 'Montserrat', sans-serif;
+}
+
+div.card p{
+	font-size: 16px;
+	font-family: 'Rubik', sans-serif;
+}
+
+.brand-link{
+	font-size: 24px; 
+	font-weight: bolder;
+	font-family: 'Kanit', sans-serif;
+	color:#5ca1ea;
+}
+
+.footer-div ul{
+	list-style-type: none;
+}
+
+.footer-div a{
+	color: #fff;
+
+
+}
+
+#search-icon{
+	display: none;
+}
