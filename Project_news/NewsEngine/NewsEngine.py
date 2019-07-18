@@ -284,27 +284,7 @@ def newsSource():
 
 #################################################################################################
 
-"""	
-print('Scheduler started............')
-schedule.every().day.at("05:00").do(deleteOldNews)
-schedule.every().day.at("06:00").do(newsSource)
-schedule.every(25).minutes.do(top_headlines)
 
-while True:
-	schedule.run_pending()
-	time.sleep(1)
-"""
-
-################ testing ##################
-
-print('Scheduler started............')
-schedule.every(1).minutes.do(top_headlines)
-schedule.every(1).minutes.do(newsSource)
-
-while True:
-	schedule.run_pending()
-	time.sleep(1)
-
-
+top_headlines()
 
 # run command : celery -A Project_news worker -l info

@@ -22,6 +22,8 @@ form.example input[type=search] {
   	border: 1px solid grey;
   	float: left;
   	width: 80%;
+  	border-top-left-radius: 20px;
+  	border-bottom-left-radius: 20px;
 }
 
 form.example button {
@@ -34,6 +36,8 @@ form.example button {
   	border: 1px solid grey;
   	border-left: none;
   	cursor: pointer;
+  	border-bottom-right-radius: 20px;
+  	border-top-right-radius: 20px;
 }
 
 form.example button:hover {
@@ -147,4 +151,53 @@ div.card p{
 
 #search-icon{
 	display: none;
+}
+
+/* youtube modal */
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/*  image crop */
+.img_box{
+   width:100%; /*container-width*/
+   overflow:hidden; /*hide bounds of image */
+   margin:0;   /*reset margin of figure tag*/
+}
+.img_crop{
+   display:block; /*remove inline-block spaces*/
+   width:100%; /*make image streatch*/
+   margin:-13% 0;
+}
+
+/* youtube image icon */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* refresh tab */
+#refresh{
+	display: none;
+}
+
+/*  youtube close btn */
+#ytclose{
+	margin-top: 57%;
+	margin-left: 80%;
+	/*margin-right: 40%;*/
+	color: #fff; 
+	background-color: #ff0000;"
 }

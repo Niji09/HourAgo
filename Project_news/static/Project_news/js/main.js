@@ -63,3 +63,23 @@ function imgError(img, altimg){
     return true;
 }
 
+
+/*
+	Function to set attribure of youtube url in the iframe within model
+*/
+//https://www.youtube.com/embed/{{d.url|videoid}}?
+
+function ytModel(vid_id){
+	url = "https://www.youtube.com/embed/"+vid_id+"?rel=0&autoplay=1"
+	document.getElementById("ytplayer").setAttribute("src", url);
+}
+
+function closeModal(){
+	document.getElementById("ytplayer").setAttribute("src", "");
+}
+
+/* refresh current page content */
+
+function refPage(){
+	location.reload(true);
+}

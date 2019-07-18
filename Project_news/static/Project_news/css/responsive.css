@@ -34,6 +34,14 @@ No media query for `xs` since this is the default in Bootstrap
 	display: none;
 }
 
+/* refresh tab */
+#refresh{
+	display: block;
+	margin: 5px; 
+	margin-left: 40%;
+	margin-right: 50%;
+}
+
 }
 
 /* Medium devices (tablets, 768px)*/
@@ -76,6 +84,20 @@ div.card p{
 	font-size:12px; 
 }
 
+/* refresh btn */
+#refresh{
+
+	display: block;
+	margin: 5px; 
+	margin-left: 40%;
+}
+
+#refresh button{
+	background-color: #5ca1ea;
+	border: 1px #5ca1ea;
+	border-radius: 20px;
+	color: #fff;
+}
 
 }
 

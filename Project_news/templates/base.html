@@ -179,8 +179,11 @@
 			{% block main_content %}
 
 			{% endblock %}
+
 			</div>
 		</div>
+
+		
 
 		<!-- right side division  -->
 		<div class="col-lg-3">
@@ -193,18 +196,37 @@
 	    <div class="modal-dialog modal-dialog-centered modal-lg">
 	      <div class="modal-content">
 	        <!-- Modal body -->
-	        <div class="modal-body p-0 m-0">
 		        <img src="" class="rounded img-fluid" alt="Sorry! Can not load Image." 
 		        id="imgid">
-	        </div>      
 	      </div>
 	    </div>
 	  </div>
 	<!-- model close -->
 
+
+	<!-- The Modal youtube vid -->
+	  <div class="modal fade" id="ytModel" data-backdrop="static" data-keyboard="false">
+	    <div class="modal-dialog modal-dialog-centered modal-lg">
+	      <div class="modal-content videoWrapper">
+	        <!-- Modal body  onclick="closeModal()" -->
+	        <iframe id="ytplayer" src=""
+	  			allow="autoplay; encrypted-media" frameborder="0" allowfullscreen>
+  			</iframe>  
+  			<button onclick="closeModal()" id="ytclose" type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+
+	<!-- modal close -->
+
 	<!-- footer -->
+
+<style type="text/css">
+	
+</style>
 
 <script type="text/javascript" src="{% static 'Project_news/js/sidenav.js' %}"></script>
 <script type="text/javascript" src="{% static 'Project_news/js/sub_main.js' %}"></script>
+
 </body>
 </html>
