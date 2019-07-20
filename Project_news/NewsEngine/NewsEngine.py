@@ -161,6 +161,7 @@ def top_headlines():
 	This method get the data from NewsApi.
 	"""
 	##### variables ####
+	print(datetime.datetime.now())
 	apikey = config('apikey')
 	q=''
 	language='en' # ar de en es fr he it nl no pt ru se ud zh

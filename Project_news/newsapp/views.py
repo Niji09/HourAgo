@@ -74,7 +74,7 @@ def searchNews(request):
 
 def newsSource(request):
 	mq = Q()
-	source = models.Top_headline.objects.values('source_name').distinct()
+	source = models.Top_headline.objects.values('source_name').distinct()[:1000]
 	
 	for i in range(source.count()):
 		mq = mq | Q(name__iexact=source[i]['source_name'])
