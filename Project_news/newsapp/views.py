@@ -74,12 +74,12 @@ def searchNews(request):
 
 def newsSource(request):
 	mq = Q()
-	source = models.Top_headline.objects.values('source_name').distinct()[:1000]
+	source = models.Top_headline.objects.values('source_name').distinct()
 	
 	for i in range(source.count()):
 		mq = mq | Q(name__iexact=source[i]['source_name'])
 
-	data = models.NewsSource.objects.filter(mq).order_by('name')[:1000]
+	data = models.NewsSource.objects.filter(mq).order_by('name')
 	context = {'data': data,}
 	return render(request, 'newsapp/news_source.html', context)
 
