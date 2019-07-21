@@ -161,7 +161,7 @@ def top_headlines():
 	This method get the data from NewsApi.
 	"""
 	##### variables ####
-	print(datetime.datetime.now())
+	print("Date: ", datetime.datetime.now())
 	apikey = config('apikey')
 	q=''
 	language='en' # ar de en es fr he it nl no pt ru se ud zh
@@ -284,8 +284,3 @@ def newsSource():
 
 
 #################################################################################################
-
-
-top_headlines()
-
-# run command : celery -A Project_news worker -l info
