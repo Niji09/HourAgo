@@ -78,6 +78,8 @@ def newsSource(request):
 	
 	for i in range(source.count()):
 		mq = mq | Q(name__iexact=source[i]['source_name'])
+		if i >= 1000:
+			break
 
 	data = models.NewsSource.objects.filter(mq).order_by('name')
 	context = {'data': data,}
