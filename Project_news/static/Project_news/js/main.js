@@ -2,7 +2,7 @@
 Function to fill data witin html element of modal
 */
 
-function modelOpen(source, score, author, date) {
+/*function modelOpen(source, score, author, date) {
 
 	//document.getElementById("myModal").setAttribute("id", model_id);
 	document.getElementById("modalHeader").innerHTML = "Data Availability: "+score+"%";
@@ -31,7 +31,7 @@ function modelOpen(source, score, author, date) {
 	else{
 		document.getElementById("pubDate").innerHTML = "";	
 	}
-}
+}*/
 
 /*
 	Function to set attribure of image url in the image within a modal
@@ -55,12 +55,14 @@ function searchElement(txt) {
     }  
 
 /*
-	Add default image if image failed to load
+	Remove image div if image failed loading
 */
-function imgError(img, altimg){
-	img.onerror = "";
-    img.src = altimg;
-    return true;
+function imgError(title_id, img_id){
+	//console.log(title_id, img_id);
+	//document.getElementById(img_id).setAttribute("class", "");
+	document.getElementById(img_id).style.display = 'none';
+	document.getElementById(title_id).setAttribute("class", "col-12");
+
 }
 
 

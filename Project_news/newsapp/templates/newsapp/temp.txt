@@ -1,0 +1,19 @@
+<!--
+					<hr class="m-0 p-0">
+				  	<div class="row score-link-eclipse ml-2 mr-2">
+				  		<a style="float: left;" title="Data fatch from Google's 'NewsApi.org'">
+				  			<span class="badge badge-primary" id="score_id">
+				  			Data Availability: {{d.initial_score|percetage}}%</span></a>
+				  		<a style="margin-left: 33.33%; display: none;"
+				  		 title="Check who else of talked about it">
+				  			<i class="fa fa-external-link"></i>
+				  		</a>
+				  		<a style="float: right;" class="btn btn-default pt-0 pb-0" role="button" 
+				  		onclick="modelOpen('{{d.source_name}}', '{{d.initial_score|percetage}}', 
+				  			'{{d.auther}}', 
+				  		'{{d.publishedAt|nicedate|date:"d M, Y"}}' )"
+				  		 data-toggle="modal" data-target="#myModal" title="More info">
+				  			<i class="fa fa-ellipsis-h"></i>
+				  		</a>
+				  	</div>
+-->

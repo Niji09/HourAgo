@@ -8,12 +8,12 @@
 		<div class="card mb-2 mt-2 shadow-lg" style="background-color: #fff;">
 		    <div class="card-body p-2">
 		    	{% if d.source_name == "Youtube.com" %}
-		    	<div class="col-12 p-0 m-0 link-css">
+		    	<div class="col-12 p-0 m-0">
 		    		<div class="col-12 p-0 m-0 img_box">
   						<a onclick="ytModel('{{d.url|videoid}}')" 
   						data-toggle="modal" data-target="#ytModel">
   							<img src="//img.youtube.com/vi/{{d.url|videoid}}/0.jpg" 
-  							width="100%" height="100%" class="img_crop img-fluid">
+  							style="width:100% height:100%;" class="img_crop img-fluid">
 
 	  						<div class="centered">
 	  							<i class="fa fa-youtube-play" aria-hidden="true"
@@ -24,26 +24,37 @@
 		    		<h6 class="card-title">
 				      	<a href="{{d.url}}" class="link-css" target="-blank" 
 				      	style="color: black;" title="Article source link">
-				      		{{d.title|rmsource|htmlconvert}}
+				      		{{d.title|htmlconvert}}
 				      	</a>
 			      	</h6>
-			      	<p style="font-size:12px;">{{d.publishedAt|nicedate|timesince}} ago</p>
+			      	<p style="font-size:13px;">{{d.publishedAt|nicedate|timesince}} ago</p>
 		    	</div>
 
 		    	{% elif d.urlToImage == "null" %}
-		    	<div class="col-12 p-0 m-0 link-css">
+		    	<div class="col-12">
 		    		<h6 class="card-title">
 				      	<a href="{{d.url}}" class="link-css" target="-blank" 
 				      	style="color: black;" title="Article source link">
-				      		{{d.title|rmsource|htmlconvert}}
+				      		{{d.title|htmlconvert}}
 				      	</a>
 				      	
 			      	</h6>
-			      	<p style="font-size:12px;">{{d.publishedAt|nicedate|timesince}} ago</p>
+			      	<div class="row">
+			      		  {% if d.auther != "null" and d.auther != "" and d.auther != d.source_name and "#" not in d.auther and "http" not in d.auther %}
+				      		<div class="col-lg-6 col-md-6 col-sm-12 mb-0 mt-0">
+						    	<p style="font-size:13px;" class="m-0 p-0">
+							      	Author: <b>{{d.auther}}</b>
+						    	</p>
+							</div>
+						  {% endif %}
+				      		<div class="col-lg-6 col-md-6 col-sm-12 mb-0 mt-0">
+				      			<p style="font-size:13px;" class="m-0 p-0">{{d.publishedAt|nicedate|timesince}} ago</p>
+				      		</div>
+			      	</div>
 		    	</div>
 		    	{% else %}
 		    	<div class="row">
-		    		<div class="col-8 pr-0 mr-0 link-css">
+		    		<div class="col-8" id="newstitlebox{{forloop.counter}}">
 		    			<h6 class="card-title">
 				      		<a href="{{d.url}}" class="link-css" target="-blank" 
 				      		style="color: black;" title="Article source link">
@@ -51,53 +62,55 @@
 				      		</a>
 				      		
 			      		</h6>
-			      		<p style="font-size:12px;">{{d.publishedAt|nicedate|timesince}} ago</p>
+			      		<div class="row">
+			      		  {% if d.auther != "null" and d.auther != "" and d.auther|lower not in d.source_name|lower and "#" not in d.auther and "http" not in d.auther %}
+				      		<div class="col-lg-6 col-md-6 col-sm-12 mb-0 mt-0">
+						    	<p style="font-size:13px;" class="m-0 p-0">
+							      	Author: <b>{{d.auther}}</b>
+						    	</p>
+							</div>
+						  {% endif %}
+				      		<div class="col-lg-6 col-md-6 col-sm-12 mb-0 mt-0">
+				      			<p style="font-size:13px;" class="m-0 p-0">{{d.publishedAt|nicedate|timesince}} ago</p>
+				      		</div>
+			      		</div>
+
+				    	
 			      	</div>
-			    	<div class="col-4 pl-0 ml-0" id="newsimgbox">
+			    	<div class="col-4 pl-0 ml-0 img-height" id="newsimgbox{{forloop.counter}}">
 			    		<a title="Click image to see full view" 
 			    			onclick="ImgModel('{{d.urlToImage}}')" 
 			    			data-toggle="modal" data-target="#imgModel">
 			    			<img class="rounded img-fluid" src="{{d.urlToImage}}" id="newsimg"
-			    			onerror="imgError(this, '{% static 'Project_news/images/alt_np_icon.png' %}');">
+			    			onerror="imgError('newstitlebox{{forloop.counter}}','newsimgbox{{forloop.counter}}');" style="width: 100%; height:100px; object-fit: cover;">
 			    		</a>
 			    	</div>	
 		    	</div>
 		    	{% endif %}
 
 		      	{% if d.source_name != "Youtube.com" %}
-			      	
+			    <div class="dec-box">
 			      	{% if d.description != "null" %}
-			      		<p><b>Description:</b> {{d.description|htmlconvert}}...
+			      		<p class="m-0 p-0"><b>Description:</b> {{d.description|htmlconvert}}...
 			      			<a href="{{d.url}}" style=" color: blue;" target="-blank" 
 			      			title="Article source link">see article</a>
 			      		</p>
 			      	{% elif d.content != "null" and d.content|startswith %}
-			      		<p><b>Content:</b> {{d.content|rmdigit|htmlconvert}}...
+			      		<p class="m-0 p-0"><b>Content:</b> {{d.content|rmdigit|htmlconvert}}...
 			      			<a href="{{d.url}}"style="color: blue;" target="-blank" 
 			      			title="Article source link">see article</a>
 			      		</p>
 			      	{% endif %}
+			    </div>
     			
-					<hr class="m-0 p-0">
-				  	<div class="row score-link-eclipse ml-2 mr-2">
-				  		<a style="float: left;" title="Data fatch from Google's 'NewsApi.org'">
-				  			<span class="badge badge-primary" id="score_id">
-				  			Data Availability: {{d.initial_score|percetage}}%</span></a>
-				  		<a style="margin-left: 33.33%; display: none;"
-				  		 title="Check who else of talked about it">
-				  			<i class="fa fa-external-link"></i>
-				  		</a>
-				  		<a style="float: right;" class="btn btn-default pt-0 pb-0" role="button" 
-				  		onclick="modelOpen('{{d.source_name}}', '{{d.initial_score|percetage}}', 
-				  			'{{d.auther}}', 
-				  		'{{d.publishedAt|nicedate|date:"d M, Y"}}' )"
-				  		 data-toggle="modal" data-target="#myModal" title="More info">
-				  			<i class="fa fa-ellipsis-h"></i>
-				  		</a>
-				  	</div>
-				  	
-			  	{% endif %}
-
+			  	<hr class="mb-0">
+			  	<div class="mb-0 mt-0">
+			      <p style="font-size:14px;" class="m-0 p-0">
+			      	Source: <b>{{d.source_name}}</b>
+			      </p>
+			    </div>
+			  
+			    {% endif %}
 		    </div>
 		</div>
 		

@@ -68,7 +68,7 @@
 				name="search-form" method="get">
 				<label for="searchIn"></label>
   					<input type="search" placeholder="Search.." name="q" value="{{search_query}}"
-  					 onkeyup="searchElement(this)" id="searchIn">
+  					 onkeyup="searchElement(this)" id="searchIn" autofocus>
   					<button type="submit" role="button" id="srcBtn" 
   					aria-label="Search" disabled><i class="fa fa-search"></i></button>
 				</form>
@@ -81,14 +81,14 @@
 			</li>
 
 			<!-- search icon -->
-			<li class="nav-item ml-3" id="search-icon" style="font-size:24px;color:#5ca1ea;"
+			<li class="nav-item ml-3" id="search-icon" style="font-size:22px;"
 			onclick="searchIcon()">
 				<i class="fa fa-search"></i>
 			</li>
 			
 			<!-- menu icon -->
 			<li class="nav-item mt-2 ml-3" id="menu-icon">
-				<i class="fa fa-navicon menu-icon" style="font-size:26px;color:#5ca1ea;"
+				<i class="fa fa-navicon menu-icon" style="font-size:26px; margin-top: -2px;"
 				 onclick="openNav()" id='nav-menu'>
 				</i>
 			</li>
@@ -158,7 +158,7 @@
 			  	  </a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="{% url 'newsapp:about' %}#HourAgo?"><i class="fa fa-question-circle-o"></i>&nbsp;&nbsp;
+			      <a class="nav-link" href="{% url 'newsapp:about' %}#Why_HourAgo?"><i class="fa fa-question-circle-o"></i>&nbsp;&nbsp;
 			      Why HourAgo?</a>
 			    </li>
 			    <li class="nav-item">

@@ -2,9 +2,9 @@
 	
 var baseUrl = "http://127.0.0.1:8000/" // http://www.hourago.in/
 var currentURL = window.location.href;
-console.log(currentURL);
+//console.log(currentURL);
 var ele = document.getElementsByClassName("active");
-console.log(ele);
+//console.log(ele);
 ele[0].setAttribute("class", "nav-link");
 
 if(currentURL==baseUrl){

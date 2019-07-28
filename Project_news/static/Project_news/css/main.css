@@ -10,6 +10,12 @@ h1, h2, h3, h4, h5, h6{
 	font-size: 20px;
 }
 
+/* brand logo */
+#brand-icon a:hover{
+	color: #5ca1ea;
+	text-decoration: underline;
+}
+
 /* search bar */
 
 * {
@@ -26,6 +32,10 @@ form.example input[type=search] {
   	border-bottom-left-radius: 20px;
 }
 
+form.example input[type=search]:focus{
+	outline-width: 0px;
+}
+
 form.example button {
   	float: left;
   	width: 20%;
@@ -40,8 +50,8 @@ form.example button {
   	border-top-right-radius: 20px;
 }
 
-form.example button:hover {
-  background: #0b7dda;
+form.example button:focus {
+	outline: 0;	
 }
 
 form.example::after {
@@ -192,6 +202,7 @@ div.card p{
 #refresh{
 	display: none;
 }
+
 
 /*  youtube close btn */
 #ytclose{
