@@ -109,6 +109,13 @@ div.card p{
 	outline: 0;
 }
 
+/* change menu icon color when sidebnav is open */
+#menu-icon i[onclick="closeNav()"]{
+	color: #5ca1ea;
+}
+
+
+
 }
 
 @media screen and (min-width: 768px) {
